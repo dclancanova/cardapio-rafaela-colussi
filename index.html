@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F0EBDD">
+  <meta name="description" content="Tortas artesanais Rafaela Colussi em Marau/RS. Conheça os sabores e faça sua encomenda pelo WhatsApp.">
+  <title>Rafaela Colussi | Tortas artesanais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    /* Ativa os efeitos só se o navegador permitir animações */
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+      document.documentElement.classList.add("js");
+    }
+  </script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="wordmark" href="#inicio" aria-label="Rafaela Colussi, início">
+      <span class="wordmark-name">Rafaela Colussi</span>
+      <span class="wordmark-subtitle">Confeitaria Artesanal</span>
+    </a>
+    <a class="header-order" href="#encomendas">Encomendas <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> FEITAS EM MARAU · RS</p>
+        <h1>Um momento doce.<br><em>Uma lembrança especial.</em></h1>
+        <p class="hero-description">Tortas artesanais com combinações de sabores pensados para transformar pequenos encontros em momentos especiais.</p>
+        <a class="button button-dark" href="#cardapio">Conheça as tortas <span aria-hidden="true">↓</span></a>
+      </div>
+      <div class="hero-photo photo-placeholder">
+        <!-- Troque por sua foto: img/hero.jpg -->
+        <img src="img/hero.jpeg" alt="Torta artesanal Rafaela Colussi">
+        <div class="placeholder-content">
+          <span class="placeholder-mark">RC</span>
+          <span>Adicione aqui uma foto real<br>da sua torta favorita</span>
+        </div>
+        <span class="photo-caption">Feito com cuidado, em cada detalhe.</span>
+      </div>
+          </section>
+
+    <section class="intro section-wrap">
+      <div class="hero-index">01 <span>—</span> SABORES AUTORAIS</div>
+      <p class="eyebrow">NOSSO CARDÁPIO</p>
+      <h2>Escolhas que despertam<br><em>os sentidos.</em></h2>
+      <p class="section-lead">Do chocolate intenso ao frescor das frutas, conheça nossas tortas artesanais.</p>
+    </section>
+
+    <!-- O preço fica só em <strong> dentro de .product-meta: é ele que vai para a mensagem do WhatsApp. -->
+    <section class="products section-wrap" id="cardapio" aria-label="Cardápio de tortas">
+      <article class="product-card">
+        <div class="product-photo photo-placeholder">
+          <img src="img/torta-limao-chocolate.jpg" alt="Torta de limão siciliano com ganache de chocolate meio amargo" loading="lazy">
+          <div class="placeholder-content"><span class="placeholder-mark">01</span><span>Insira a foto real<br>desta torta</span></div>
+          <span class="product-number">01 / 04</span>
+        </div>
+        <div class="product-info">
+          <p class="product-category">CHOCOLATE & CÍTRICOS</p>
+          <h3>Torta de Limão Siciliano com Ganache de Chocolate Meio Amargo</h3>
+          <p class="product-description">Base de biscoito, ganache de chocolate meio amargo e mousse de limão siciliano, finalizada com chantilly. O contraste entre a intensidade do chocolate e o frescor cítrico do limão dá personalidade a cada fatia.</p>
+          <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 95,00</strong></div>
+          <button type="button" class="text-link order-product" data-product="Torta de Limão Siciliano com Ganache de Chocolate Meio Amargo">Encomendar esta torta <span aria-hidden="true">↗</span></button>
+        </div>
+      </article>
+
+      <article class="product-card product-card-reverse">
+        <div class="product-photo photo-placeholder">
+          <img src="img/torta-limao-mirtilo.jpg" alt="Torta de limão siciliano com ganache de mirtilo" loading="lazy">
+          <div class="placeholder-content"><span class="placeholder-mark">02</span><span>Insira a foto real<br>desta torta</span></div>
+          <span class="product-number">02 / 04</span>
+        </div>
+        <div class="product-info">
+          <p class="product-category">MIRTILO & CÍTRICOS</p>
+          <h3>Torta de Limão Siciliano com Ganache de Mirtilo</h3>
+          <p class="product-description">Base de biscoito, ganache de mirtilo e mousse de limão siciliano, finalizada com chantilly, mirtilos frescos e rodelas de limão. Uma combinação delicada de notas frutadas e frescor cítrico.</p>
+          <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 135,00</strong></div>
+          <button type="button" class="text-link order-product" data-product="Torta de Limão Siciliano com Ganache de Mirtilo">Encomendar esta torta <span aria-hidden="true">↗</span></button>
+        </div>
+      </article>
+
+      <article class="product-card">
+        <div class="product-photo photo-placeholder">
+          <img src="img/cheesecake-mirtilo.jpg" alt="Cheesecake de mirtilo" loading="lazy">
+          <div class="placeholder-content"><span class="placeholder-mark">03</span><span>Insira a foto real<br>desta torta</span></div>
+          <span class="product-number">03 / 04</span>
+        </div>
+        <div class="product-info">
+          <p class="product-category">CHEESECAKES</p>
+          <h3>Cheesecake de Mirtilo</h3>
+          <p class="product-description">Base de biscoito, creme de cream cheese com baunilha, finalizada com geleia de mirtilo e mirtilos frescos. Cremosa, com um delicado toque frutado.</p>
+          <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 130,00</strong></div>
+          <button type="button" class="text-link order-product" data-product="Cheesecake de Mirtilo">Encomendar esta torta <span aria-hidden="true">↗</span></button>
+        </div>
+      </article>
+
+      <article class="product-card product-card-reverse">
+        <div class="product-photo photo-placeholder">
+          <img src="img/cheesecake-flocos-frutas-vermelhas.jpeg" alt="Cheesecake de flocos com geleia de frutas vermelhas" loading="lazy">
+          <div class="placeholder-content"><span class="placeholder-mark">04</span><span>Insira a foto real<br>desta torta</span></div>
+          <span class="product-number">04 / 04</span>
+        </div>
+        <div class="product-info">
+          <p class="product-category">CHOCOLATE & FRUTAS VERMELHAS</p>
+          <h3>Cheesecake de Flocos com Geleia de Frutas Vermelhas</h3>
+          <p class="product-description">Base de biscoito, creme de cream cheese com baunilha e pedaços de chocolate meio amargo, coberto com geleia de frutas vermelhas e frutas frescas. Uma combinação cremosa, com notas de chocolate e toque frutado.</p>
+          <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 130,00</strong></div>
+          <button type="button" class="text-link order-product" data-product="Cheesecake de Flocos com Geleia de Frutas Vermelhas">Encomendar esta torta <span aria-hidden="true">↗</span></button>
+        </div>
+      </article>
+    </section>
+
+    <section class="order-section" id="encomendas">
+      <div class="order-inner">
+        <p class="eyebrow">COMO ENCOMENDAR</p>
+        <h2>Feita para a sua<br><em>próxima ocasião.</em></h2>
+        <div class="order-details">
+          <div><span class="detail-number">01</span><div><h3>Antecedência</h3><p>Faça seu pedido com pelo menos 2 dias de antecedência.</p></div></div>
+          <div><span class="detail-number">02</span><div><h3>Retirada</h3><p>A retirada é combinada diretamente pelo WhatsApp. O endereço é informado em particular após a confirmação.</p></div></div>
+          <div><span class="detail-number">03</span><div><h3>Pagamento</h3><p>Pix ou dinheiro.</p></div></div>
+        </div>
+        <!-- O link do WhatsApp é montado pelo script.js (número definido em um só lugar) -->
+        <a class="button button-light" href="#contato" data-wa="disponibilidade" target="_blank" rel="noopener noreferrer">Consultar disponibilidade no WhatsApp <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="order-decoration" aria-hidden="true">RC</div>
+    </section>
+
+    <section class="contact section-wrap" id="contato">
+      <p class="eyebrow">VAMOS CONVERSAR?</p>
+      <h2>Qual vai ser a sua<br><em>doce escolha?</em></h2>
+      <p class="section-lead">Fale com a Rafaela para consultar a disponibilidade e combinar sua encomenda.</p>
+      <div class="contact-links">
+        <a href="#contato" data-wa="simples" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><span>Fazer uma encomenda ↗</span></a>
+        <a href="https://www.instagram.com/rafaelacolussi_/" target="_blank" rel="noopener noreferrer"><span>Instagram</span><span>@rafaelacolussi_ ↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="footer-brand" href="#inicio">Rafaela Colussi</a>
+    <span>Tortas artesanais · Marau, RS</span>
+    <a href="#inicio" class="back-top">Voltar ao topo ↑</a>
+  </footer>
+</body>
+</html>
