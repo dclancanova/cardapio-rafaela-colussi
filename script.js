@@ -1,5 +1,5 @@
 /* ============ CONFIGURAÇÃO (edite só aqui) ============ */
-const WHATSAPP_NUMBER = "5554997037334"; // 55 + DDD 54 + 99703-7334
+const WHATSAPP_NUMBER = "555491565117"; // 55 + DDD 54 + 99703-7334
 const MSG_DISPONIBILIDADE = "Olá, Rafaela! Vim pelo seu cardápio digital e gostaria de consultar a disponibilidade das tortas.";
 const MSG_PRODUTO = (produto, preco) =>
   `Olá, Rafaela! Vim pelo seu cardápio digital e gostaria de consultar a disponibilidade da ${produto}, no valor de ${preco}.`;

@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#F0EBDD">
   <meta name="description" content="Tortas artesanais Rafaela Colussi em Marau/RS. Conheça os sabores e faça sua encomenda pelo WhatsApp.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23667052'/%3E%3Ctext x='32' y='43' text-anchor='middle' font-family='Georgia,serif' font-size='30' fill='%23F0EBDD'%3ERC%3C/text%3E%3C/svg%3E">
-  <title>Rafaela Colussi | Confeitaria Artesanal</title>
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="apple-touch-icon" href="img/favicon.png">
+  <title>Rafaela Colussi | Tortas artesanais</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -22,8 +23,11 @@
 <body>
   <header class="site-header">
     <a class="wordmark" href="#inicio" aria-label="Rafaela Colussi, início">
-      <span class="wordmark-name">Rafaela Colussi</span>
-      <span class="wordmark-subtitle">Confeitaria Artesanal</span>
+      <img class="wordmark-logo" src="img/logo-rc.png" alt="" width="46" height="46" onerror="this.remove()">
+      <span class="wordmark-text">
+        <span class="wordmark-name">Rafaela Colussi</span>
+        <span class="wordmark-subtitle">Confeitaria Artesanal</span>
+      </span>
     </a>
     <a class="header-order" href="#encomendas">Informações <span aria-hidden="true">↓</span></a>
   </header>
@@ -152,8 +156,8 @@
   <article id="cheesecake-mirtilo" data-category="cheesecake" class="product-card">
     <div class="product-photo photo-placeholder">
       <div class="product-gallery">
-        <img src="img\cheesecake-mirtilo.png" alt="Cheesecake de mirtilo — foto 1" loading="lazy">
-        <img src="img\cheesecake-mirtilo-2.png" alt="Cheesecake de mirtilo — foto 2" loading="lazy">
+        <img src="img/cheesecake-mirtilo.jpg" alt="Cheesecake de mirtilo — foto 1" loading="lazy">
+        <img src="img/cheesecake-mirtilo-2.jpg" alt="Cheesecake de mirtilo — foto 2" loading="lazy">
       </div>
       <div class="placeholder-content"><span class="placeholder-mark">05</span><span>Insira as fotos reais<br>desta torta</span></div>
       <span class="product-number">05 / 08</span>
@@ -248,17 +252,17 @@
           <div><span class="detail-number">03</span><div><h3>Pagamento</h3><p>Pix ou dinheiro.</p></div></div>
         </div>
         <!-- O link do WhatsApp é montado pelo script.js (número definido em um só lugar) -->
-        <a class="button button-light" href="https://wa.me/5554997037334" data-wa="disponibilidade" target="_blank" rel="noopener noreferrer">Consultar disponibilidade no WhatsApp <span aria-hidden="true">↗</span></a>
+        <a class="button button-light" href="https://wa.me/555491565117" data-wa="disponibilidade" target="_blank" rel="noopener noreferrer">Consultar disponibilidade no WhatsApp <span aria-hidden="true">↗</span></a>
       </div>
-      <div class="order-decoration" aria-hidden="true">RC</div>
+      <div class="order-decoration" aria-hidden="true"><img src="img/logo-rc-claro.png" alt="" onerror="this.remove()"></div>
     </section>
 
     <section class="contact section-wrap" id="contato">
       <p class="eyebrow">VAMOS CONVERSAR?</p>
       <h2>Qual vai ser a sua<br><em>doce escolha?</em></h2>
-      <p class="section-lead">Fale com a Rafaela para consultar a disponibilidade e combinar sua encomenda.</p>
+      <p class="section-lead">Fale conosco para consultar a disponibilidade e combinar sua encomenda.</p>
       <div class="contact-links">
-        <a href="https://wa.me/5554997037334" data-wa="simples" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><span>Fazer uma encomenda ↗</span></a>
+        <a href="https://wa.me/555491565117" data-wa="simples" target="_blank" rel="noopener noreferrer"><span>WhatsApp</span><span>Fazer uma encomenda ↗</span></a>
         <a href="https://www.instagram.com/rafaelacolussi_/" target="_blank" rel="noopener noreferrer"><span>Instagram</span><span>@rafaelacolussi_ ↗</span></a>
       </div>
     </section>
@@ -271,7 +275,7 @@
   </footer>
 
   <!-- Botão flutuante do WhatsApp: o link é montado pelo script.js (data-wa) -->
-  <a class="wa-float" href="https://wa.me/5554997037334" data-wa="disponibilidade" target="_blank" rel="noopener noreferrer" aria-label="Fazer uma encomenda pelo WhatsApp">
+  <a class="wa-float" href="https://wa.me/555491565117" data-wa="disponibilidade" target="_blank" rel="noopener noreferrer" aria-label="Fazer uma encomenda pelo WhatsApp">
     <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
     <span>Encomendar</span>
   </a>
