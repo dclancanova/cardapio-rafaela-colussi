@@ -33,4 +33,3 @@ Se suas fotos estiverem em PNG ou WEBP, altere a extensão correspondente no `in
 5. Em **Build and deployment**, selecione **Deploy from a branch**, escolha `main` e `/ (root)` e salve.
 6. Aguarde a publicação e abra o endereço exibido na seção Pages. Pode levar alguns minutos.
 
-O código-fonte de um repositório público pode ser visto por qualquer pessoa. Não coloque informações privadas nele.
