@@ -1,36 +1,25 @@
-/* ============ CONFIGURAÇÃO (edite só aqui) ============ */
-const WHATSAPP_NUMBER = "555491565117"; // 55 + DDD 54 + 99703-7334
-const MSG_DISPONIBILIDADE = "Olá, Rafaela! Vim pelo seu cardápio digital e gostaria de consultar a disponibilidade das tortas.";
+/* ==========================================================================
+   Rafaela Colussi — Tortas artesanais
+   Índice: 1 Configuração · 2 Utilitários · 3 WhatsApp · 4 Foto ampliada
+           5 Carrossel de fotos · 6 Foto de destaque · 7 Filtro e alternância esq./dir.
+           8 Link direto e compartilhar · 9 Cabeçalho e botão flutuante · 10 Revelar ao rolar
+   ========================================================================== */
+
+/* ============ 1. CONFIGURAÇÃO (edite só aqui) ============ */
+const WHATSAPP_NUMBER = "555491565117"; // 55 + DDD + número, só dígitos. CONFIRA se é este mesmo.
+const AUTOPLAY_MS = 4000;               // tempo entre trocas automáticas de foto (0 desliga)
+
+const MSG_DISPONIBILIDADE =
+  "Olá, Rafaela! Vim pelo seu cardápio digital e gostaria de consultar a disponibilidade das tortas.";
 const MSG_PRODUTO = (produto, preco) =>
   `Olá, Rafaela! Vim pelo seu cardápio digital e gostaria de consultar a disponibilidade da ${produto}, no valor de ${preco}.`;
+const MSG_PRODUTO_SEM_PRECO = (produto) =>
+  `Olá, Rafaela! Vim pelo seu cardápio digital e gostaria de consultar a disponibilidade da ${produto}.`;
 
-const waLink = (msg) =>
-  `https://wa.me/${WHATSAPP_NUMBER}` + (msg ? `?text=${encodeURIComponent(msg)}` : "");
+/* ============ 2. UTILITÁRIOS ============ */
+const $  = (selector, root = document) => root.querySelector(selector);
+const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-// Tempo entre as trocas automáticas de foto, em milissegundos (0 desliga)
-const AUTOPLAY_MS = 4000;
-
-/* ============ WHATSAPP ============ */
-// Links fixos (seção de pedido e contato)
-document.querySelectorAll("[data-wa]").forEach((a) => {
-  a.href = waLink(a.dataset.wa === "disponibilidade" ? MSG_DISPONIBILIDADE : "");
-});
-
-// Botões das tortas: o preço vem do próprio card, então nunca diverge
-document.querySelectorAll(".order-product").forEach((button) => {
-  button.addEventListener("click", () => {
-    const card = button.closest(".product-card");
-    const priceEl = card && card.querySelector(".product-meta strong");
-    const product = button.dataset.product || (card && card.querySelector("h3").textContent.trim());
-    const url = priceEl
-      ? waLink(MSG_PRODUTO(product, priceEl.textContent.trim()))
-      : waLink(`Olá, Rafaela! Vim pelo seu cardápio digital e gostaria de consultar a disponibilidade da ${product}.`);
-    window.open(url, "_blank", "noopener,noreferrer");
-  });
-});
-
-
-/* ============ FOTOS: carrossel de cada torta ============ */
 const makeEl = (tag, className, attrs = {}) => {
   const el = document.createElement(tag);
   el.className = className;
@@ -38,7 +27,31 @@ const makeEl = (tag, className, attrs = {}) => {
   return el;
 };
 
-/* ============ FOTO AMPLIADA (tela cheia, com zoom) ============ */
+const waLink = (msg) =>
+  `https://wa.me/${WHATSAPP_NUMBER}` + (msg ? `?text=${encodeURIComponent(msg)}` : "");
+
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ============ 3. WHATSAPP ============ */
+// Links fixos (seção de encomendas, contato e botão flutuante)
+$$("[data-wa]").forEach((a) => {
+  a.href = waLink(a.dataset.wa === "disponibilidade" ? MSG_DISPONIBILIDADE : "");
+});
+
+// Botões das tortas: o preço vem do próprio card, então nunca diverge
+$$(".order-product").forEach((button) => {
+  button.addEventListener("click", () => {
+    const card = button.closest(".product-card");
+    const priceEl = card && $(".product-meta strong", card);
+    const product = button.dataset.product || (card && $("h3", card).textContent.trim());
+    const msg = priceEl
+      ? MSG_PRODUTO(product, priceEl.textContent.trim())
+      : MSG_PRODUTO_SEM_PRECO(product);
+    window.open(waLink(msg), "_blank", "noopener,noreferrer");
+  });
+});
+
+/* ============ 4. FOTO AMPLIADA (tela cheia, com zoom) ============ */
 const lightbox = (() => {
   let dlg = null, stage, img, prevBtn, nextBtn;
   let items = [], idx = 0;
@@ -60,12 +73,12 @@ const lightbox = (() => {
       '<button type="button" class="lb-nav lb-prev" aria-label="Foto anterior">‹</button>' +
       '<button type="button" class="lb-nav lb-next" aria-label="Próxima foto">›</button>' +
       '<div class="lb-stage"><img alt=""></div>';
-    stage = dlg.querySelector(".lb-stage");
-    img = stage.querySelector("img");
-    prevBtn = dlg.querySelector(".lb-prev");
-    nextBtn = dlg.querySelector(".lb-next");
+    stage = $(".lb-stage", dlg);
+    img = $("img", stage);
+    prevBtn = $(".lb-prev", dlg);
+    nextBtn = $(".lb-next", dlg);
 
-    dlg.querySelector(".lb-close").addEventListener("click", () => dlg.close());
+    $(".lb-close", dlg).addEventListener("click", () => dlg.close());
     prevBtn.addEventListener("click", () => step(-1));
     nextBtn.addEventListener("click", () => step(1));
     // Toque na foto: aproxima/afasta. Toque no fundo: fecha.
@@ -93,23 +106,23 @@ const lightbox = (() => {
   };
 })();
 
+/* ============ 5. CARROSSEL DE FOTOS (um por torta) ============ */
 const initPhotoArea = (photo) => {
-  const gallery = photo.querySelector(".product-gallery");
-  const placeholder = photo.querySelector(".placeholder-content");
-  const images = Array.from(
-    gallery ? gallery.querySelectorAll("img") : photo.querySelectorAll(":scope > img")
-  );
+  const gallery = $(".product-gallery", photo);
+  const placeholder = $(".placeholder-content", photo);
+  const images = gallery ? $$("img", gallery) : $$(":scope > img", photo);
   if (!images.length) return;
 
-  const failed = new Set(); // só marcamos as que deram erro (imagens "lazy" ainda não carregadas continuam válidas)
+  const failed = new Set(); // imagens que deram erro (as "lazy" ainda não carregadas continuam válidas)
   const isStack = Boolean(gallery) && images.length > 1;
   let pos = 0;
   let animating = false;
-  let restartAutoplay = () => {}; // definido abaixo quando há carrossel
+  let restartAutoplay = () => {}; // definido abaixo, quando há autoplay
   let prevBtn = null, nextBtn = null, dotsEl = null;
 
   const available = () => images.filter((img) => !failed.has(img));
 
+  // Desenha o estado atual (foto de cima, foto de baixo, pontinhos, espaço reservado)
   const render = () => {
     const list = available();
     const hasImage = list.length > 0;
@@ -142,7 +155,7 @@ const initPhotoArea = (photo) => {
     }));
   };
 
-  // A foto de cima sai para o lado (dir = -1 esquerda, 1 direita) e a de baixo assume o lugar
+  // A foto de cima sai para o lado (dir: -1 esquerda, 1 direita) e a de baixo assume o lugar
   const fly = (dir, target) => {
     const list = available();
     if (animating || list.length < 2) return;
@@ -151,7 +164,7 @@ const initPhotoArea = (photo) => {
     if (!incoming || incoming === topImg) return;
 
     animating = true;
-    restartAutoplay(); // qualquer troca (manual ou automática) zera a contagem dos 3 s
+    restartAutoplay(); // qualquer troca (manual ou automática) zera a contagem
     topImg.style.transform = "";
     topImg.style.opacity = "";
     topImg.classList.add(dir < 0 ? "is-out-left" : "is-out-right");
@@ -172,8 +185,9 @@ const initPhotoArea = (photo) => {
     }, 820);
   };
 
-  const next = () => fly(-1, (pos + 1) % available().length);
-  const prev = () => fly(1, (pos - 1 + available().length) % available().length);
+  const count = () => available().length;
+  const next = () => fly(-1, (pos + 1) % count());
+  const prev = () => fly(1, (pos - 1 + count()) % count());
 
   if (isStack) {
     gallery.classList.add("is-carousel");
@@ -194,12 +208,13 @@ const initPhotoArea = (photo) => {
 
     // Setas do teclado quando o foco está dentro da área de fotos
     photo.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") { prev(); e.preventDefault(); }
+      if (e.key === "ArrowLeft")  { prev(); e.preventDefault(); }
       if (e.key === "ArrowRight") { next(); e.preventDefault(); }
     });
 
     // Arrastar a foto de cima com o dedo ou o mouse
     let startX = null, dx = 0, dragging = false, dragImg = null, suppressClick = false;
+
     gallery.addEventListener("pointerdown", (e) => {
       if (animating || (e.pointerType === "mouse" && e.button !== 0)) return;
       startX = e.clientX;
@@ -231,19 +246,20 @@ const initPhotoArea = (photo) => {
       dragImg.classList.remove("is-dragging");
       dragImg.style.transform = "";
       dragImg.style.opacity = ""; // com a animação ativa, volta ao lugar ou sai
-      if (Math.abs(dx) > 40) fly(dx < 0 ? -1 : 1, (pos + 1) % available().length);
+      if (Math.abs(dx) > 40) (dx < 0 ? next : prev)(); // arrastou p/ esquerda = próxima; p/ direita = anterior
     };
+    gallery.addEventListener("pointerup", endDrag);
+    gallery.addEventListener("pointercancel", endDrag);
+
+    // Clique na foto: abre ampliada
     gallery.addEventListener("click", () => {
       if (suppressClick || animating) return;
       const list = available();
       lightbox.open(list.map((i) => ({ src: i.currentSrc || i.src, alt: i.alt })), pos);
     });
-    gallery.addEventListener("pointerup", endDrag);
-    gallery.addEventListener("pointercancel", endDrag);
 
     // Troca automática: pausa quando o cliente interage, a aba está oculta ou a foto fora da tela
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (AUTOPLAY_MS > 0 && !reduceMotion) {
+    if (AUTOPLAY_MS > 0 && !prefersReducedMotion) {
       let timer = null;
       let paused = false;
       let visible = !("IntersectionObserver" in window);
@@ -251,7 +267,7 @@ const initPhotoArea = (photo) => {
       const stop = () => { clearInterval(timer); timer = null; };
       restartAutoplay = () => {
         stop();
-        if (paused || !visible || document.hidden || available().length < 2) return;
+        if (paused || !visible || document.hidden || count() < 2) return;
         timer = setInterval(() => { if (!animating) next(); }, AUTOPLAY_MS);
       };
       const pause = () => { paused = true; stop(); };
@@ -259,10 +275,10 @@ const initPhotoArea = (photo) => {
 
       photo.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") pause(); });
       photo.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") resume(); });
-      photo.addEventListener("pointerdown", (e) => { if (e.pointerType !== "mouse") pause(); });
-      photo.addEventListener("pointerup", (e) => { if (e.pointerType !== "mouse") resume(); });
+      photo.addEventListener("pointerdown",  (e) => { if (e.pointerType !== "mouse") pause(); });
+      photo.addEventListener("pointerup",    (e) => { if (e.pointerType !== "mouse") resume(); });
       photo.addEventListener("pointercancel", resume);
-      photo.addEventListener("focusin", (e) => { if (e.target.matches(":focus-visible")) pause(); });
+      photo.addEventListener("focusin",  (e) => { if (e.target.matches(":focus-visible")) pause(); });
       photo.addEventListener("focusout", resume);
       document.addEventListener("visibilitychange", restartAutoplay);
 
@@ -280,44 +296,49 @@ const initPhotoArea = (photo) => {
   // Acompanha imagens que não carregaram (arquivo ausente ou nome errado)
   images.forEach((img) => {
     img.addEventListener("error", () => { failed.add(img); render(); });
-    img.addEventListener("load", () => { failed.delete(img); render(); });
+    img.addEventListener("load",  () => { failed.delete(img); render(); });
     if (img.complete && img.naturalWidth === 0 && img.getAttribute("src")) failed.add(img);
   });
 
   render();
 };
 
-document.querySelectorAll(".product-photo").forEach(initPhotoArea);
+$$(".product-photo").forEach(initPhotoArea);
 
-// Foto de destaque: se faltar o arquivo, mostra o espaço reservado em vez do ícone de imagem quebrada
+/* ============ 6. FOTO DE DESTAQUE ============ */
+// Se faltar o arquivo, mostra o espaço reservado em vez do ícone de imagem quebrada
 (() => {
-  const heroPhoto = document.querySelector(".hero-photo");
-  const heroImg = heroPhoto && heroPhoto.querySelector("img");
+  const heroPhoto = $(".hero-photo");
+  const heroImg = heroPhoto && $("img", heroPhoto);
   if (!heroImg) return;
   const fail = () => { heroPhoto.classList.add("is-placeholder"); heroImg.style.display = "none"; };
   heroImg.addEventListener("error", fail);
   if (heroImg.complete && heroImg.naturalWidth === 0) fail();
 })();
 
+/* ============ 7. FILTRO POR CATEGORIA + ALTERNÂNCIA ESQUERDA/DIREITA ============ */
+const productsSection = $("#cardapio");
+const productCards = $$(".product-card");
+const categoryChips = $$(".category-chip");
+const filterStatus = $("#filter-status");
 
-/* ============ CATEGORIAS, LINK DIRETO E COMPARTILHAR ============ */
-const productsSection = document.querySelector("#cardapio");
-const productCards = Array.from(document.querySelectorAll(".product-card"));
-const categoryChips = document.querySelectorAll(".category-chip");
-const filterStatus = document.querySelector("#filter-status");
-
-// Mostra só a categoria escolhida e mantém a alternância foto esquerda/direita
+// Mostra só a categoria escolhida e REFAZ a alternância esquerda/direita dos cards visíveis:
+// 1º visível = foto à esquerda, 2º = foto à direita, 3º = esquerda...
 const applyFilter = (filter, scroll = false) => {
   let shown = 0;
+
   productCards.forEach((card) => {
     const match = filter === "todas" || card.dataset.category === filter;
     card.hidden = !match;
     if (!match) return;
+
     const reverse = shown % 2 === 1;
     shown++;
     card.classList.toggle("product-card-reverse", reverse);
-    const photo = card.querySelector(".product-photo");
-    const info = card.querySelector(".product-info");
+
+    // Mantém a direção da animação de entrada coerente com o lado
+    const photo = $(".product-photo", card);
+    const info = $(".product-info", card);
     if (photo.classList.contains("reveal")) {
       photo.classList.toggle("reveal-right", reverse);
       photo.classList.toggle("reveal-left", !reverse);
@@ -325,20 +346,28 @@ const applyFilter = (filter, scroll = false) => {
       info.classList.toggle("reveal-right", !reverse);
     }
   });
+
   categoryChips.forEach((chip) => {
     const on = chip.dataset.filter === filter;
     chip.classList.toggle("is-active", on);
     chip.setAttribute("aria-pressed", String(on));
   });
-  if (filterStatus) filterStatus.textContent = `${shown} ${shown === 1 ? "torta" : "tortas"} no cardápio`;
+
+  if (filterStatus) filterStatus.textContent = `${shown} ${shown === 1 ? "item" : "itens"} no cardápio`;
+
   if (scroll && productsSection && productsSection.getBoundingClientRect().top < 0) {
     productsSection.scrollIntoView({ block: "start" });
   }
 };
+
 categoryChips.forEach((chip) =>
   chip.addEventListener("click", () => applyFilter(chip.dataset.filter, true))
 );
 
+// Roda já na abertura da página (não depende das classes escritas no HTML)
+applyFilter("todas");
+
+/* ============ 8. LINK DIRETO E COMPARTILHAR ============ */
 // Link direto para uma torta (ex.: site.com/#torta-maracuja)
 const openFromHash = () => {
   const id = decodeURIComponent(location.hash.slice(1));
@@ -351,34 +380,37 @@ window.addEventListener("hashchange", openFromHash);
 window.addEventListener("load", openFromHash);
 
 // Botão "Compartilhar": menu do celular ou, no computador, copia o link
-document.querySelectorAll(".share-link").forEach((btn) => {
+$$(".share-link").forEach((btn) => {
   btn.addEventListener("click", async () => {
     const card = btn.closest(".product-card");
-    const title = card.querySelector("h3").textContent.trim();
+    const title = $("h3", card).textContent.trim();
     const url = `${location.href.split("#")[0]}#${card.id}`;
+
     try {
       if (navigator.share) {
-        await navigator.share({ title, text: `Olha essa torta da Rafaela Colussi: ${title}`, url });
+        await navigator.share({ title, text: `Olha essa delícia da Rafaela Colussi: ${title}`, url });
         return;
       }
     } catch (err) {
       if (err.name === "AbortError") return; // a pessoa fechou o menu
     }
+
     try {
       await navigator.clipboard.writeText(url);
       btn.textContent = "Link copiado ✓";
       setTimeout(() => { btn.textContent = "Compartilhar"; }, 2200);
     } catch (err) {
-      window.prompt("Copie o link desta torta:", url);
+      window.prompt("Copie o link:", url);
     }
   });
 });
 
+/* ============ 9. CABEÇALHO (sombra) E BOTÃO FLUTUANTE ============ */
+(() => {
+  const header = $(".site-header");
+  const waFloat = $(".wa-float");
+  if (!header && !waFloat) return;
 
-/* ============ HEADER: sombra ao rolar ============ */
-const header = document.querySelector(".site-header");
-const waFloat = document.querySelector(".wa-float");
-if (header || waFloat) {
   const onScroll = () => {
     if (header) header.classList.toggle("is-scrolled", window.scrollY > 10);
     // O botão do WhatsApp aparece depois que o cliente passa da primeira tela
@@ -386,9 +418,10 @@ if (header || waFloat) {
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
-}
+})();
 
-/* ============ REVELAR AO ROLAR ============ */
+/* ============ 10. REVELAR AO ROLAR ============ */
+// Precisa rodar DEPOIS do applyFilter, pois lê o lado (reverse) de cada card
 (() => {
   const root = document.documentElement;
   if (!root.classList.contains("js")) return;
@@ -396,11 +429,10 @@ if (header || waFloat) {
   try {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Cards de torta revelam foto e texto juntos
-          (entry.target.revealTargets || [entry.target]).forEach((el) => el.classList.add("is-visible"));
-          observer.unobserve(entry.target);
-        }
+        if (!entry.isIntersecting) return;
+        // Cards revelam foto e texto juntos
+        (entry.target.revealTargets || [entry.target]).forEach((el) => el.classList.add("is-visible"));
+        observer.unobserve(entry.target);
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
 
@@ -413,21 +445,23 @@ if (header || waFloat) {
       });
     };
 
-    reveal(document.querySelectorAll(".intro > *"));
-    document.querySelectorAll(".product-card").forEach((card) => {
+    reveal($$(".intro > *"));
+
+    productCards.forEach((card) => {
       const reverse = card.classList.contains("product-card-reverse");
-      const photo = card.querySelector(".product-photo");
-      const info = card.querySelector(".product-info");
+      const photo = $(".product-photo", card);
+      const info = $(".product-info", card);
       photo.classList.add("reveal", reverse ? "reveal-right" : "reveal-left");
       info.classList.add("reveal", reverse ? "reveal-left" : "reveal-right");
       card.revealTargets = [photo, info];
       observer.observe(card);
     });
-    reveal(document.querySelectorAll(".order-inner > .eyebrow, .order-inner > h2"));
-    reveal(document.querySelectorAll(".order-details > div"), "", 0.1, 0.15);
-    reveal(document.querySelectorAll(".order-inner > .button"), "", 0.2);
-    reveal(document.querySelectorAll(".contact > *:not(.contact-links)"));
-    reveal(document.querySelectorAll(".contact-links a"), "", 0.1, 0.15);
+
+    reveal($$(".order-inner > .eyebrow, .order-inner > h2"));
+    reveal($$(".order-details > div"), "", 0.1, 0.15);
+    reveal($$(".order-inner > .button"), "", 0.2);
+    reveal($$(".contact > *:not(.contact-links)"));
+    reveal($$(".contact-links a"), "", 0.1, 0.15);
   } catch (err) {
     // Se algo falhar, mostra tudo normalmente em vez de deixar o conteúdo escondido
     root.classList.remove("js");

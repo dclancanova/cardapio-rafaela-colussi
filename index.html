@@ -21,6 +21,8 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+
+  <!-- ===== CABEÇALHO ===== -->
   <header class="site-header">
     <a class="wordmark" href="#inicio" aria-label="Rafaela Colussi, início">
       <img class="wordmark-logo" src="img/logo-rc.png" alt="" width="46" height="46" onerror="this.remove()">
@@ -33,6 +35,8 @@
   </header>
 
   <main>
+
+    <!-- ===== DESTAQUE ===== -->
     <section class="hero" id="inicio">
       <div class="hero-copy">
         <p class="eyebrow"><span class="eyebrow-line"></span> FEITAS EM MARAU · RS</p>
@@ -40,8 +44,7 @@
         <p class="hero-description">Tortas artesanais com combinações de sabores pensados para transformar pequenos encontros em momentos especiais.</p>
         <a class="button button-dark" href="#cardapio">Conheça as tortas <span aria-hidden="true">↓</span></a>
       </div>
-      <div class="hero-photo photo-placeholder">
-        <!-- Troque por sua foto: img/hero.jpeg -->
+      <div class="hero-photo">
         <img src="img/hero.jpeg" alt="Torta artesanal Rafaela Colussi">
         <div class="placeholder-content">
           <span class="placeholder-mark">RC</span>
@@ -51,29 +54,32 @@
       </div>
     </section>
 
+    <!-- ===== INTRODUÇÃO ===== -->
     <section class="intro section-wrap">
       <p class="eyebrow">NOSSO CARDÁPIO</p>
       <h2>Escolhas que despertam<br><em>os sentidos.</em></h2>
       <p class="section-lead">Do chocolate intenso ao frescor das frutas, conheça nossas tortas artesanais.</p>
     </section>
 
-    
-<!-- O preço fica só em <strong> dentro de .product-meta: é ele que vai para a mensagem do WhatsApp. -->
-<section class="products section-wrap" id="cardapio" aria-label="Cardápio de tortas">
+    <!-- ===== CARDÁPIO =====
+         Para adicionar uma torta: copie um <article> inteiro e troque id, data-category, fotos, textos e preço.
+         O preço fica só dentro de <strong> em .product-meta (é ele que vai para a mensagem do WhatsApp).
+         NÃO é preciso se preocupar com esquerda/direita: o script.js alterna sozinho. -->
+    <section class="products section-wrap" id="cardapio" aria-label="Cardápio de tortas">
 
-  <nav class="category-nav" aria-label="Filtrar o cardápio por categoria">
-    <button type="button" class="category-chip is-active" data-filter="todas" aria-pressed="true">Todas</button>
-    <button type="button" class="category-chip" data-filter="torta" aria-pressed="false">Tortas</button>
-    <button type="button" class="category-chip" data-filter="cheesecake" aria-pressed="false">Cheesecakes</button>
-    <button type="button" class="category-chip" data-filter="dacquoise" aria-pressed="false">Dacquoise</button>
-  </nav>
-  <p class="sr-only" id="filter-status" aria-live="polite"></p>
+      <nav class="category-nav" aria-label="Filtrar o cardápio por categoria">
+        <button type="button" class="category-chip is-active" data-filter="todas" aria-pressed="true">Todas</button>
+        <button type="button" class="category-chip" data-filter="torta" aria-pressed="false">Tortas</button>
+        <button type="button" class="category-chip" data-filter="cheesecake" aria-pressed="false">Cheesecakes</button>
+        <button type="button" class="category-chip" data-filter="dacquoise" aria-pressed="false">Dacquoise</button>
+      </nav>
+      <p class="sr-only" id="filter-status" aria-live="polite"></p>
 
   <article id="torta-limao-chocolate" data-category="torta" class="product-card">
-    <div class="product-photo photo-placeholder">
+    <div class="product-photo">
       <div class="product-gallery">
-        <img src="img/torta-limao-chocolate.jpg" alt="Torta de limão siciliano com ganache de chocolate meio amargo — foto 1" loading="lazy">
-        <img src="img/torta-limao-chocolate-2.jpg" alt="Torta de limão siciliano com ganache de chocolate meio amargo — foto 2" loading="lazy">
+        <img src="img/torta-limao-chocolate.jpeg" alt="Torta de Limão Siciliano com Ganache de Chocolate Meio Amargo — foto 1" loading="lazy">
+        <img src="img/torta-limao-chocolate-2.jpg" alt="Torta de Limão Siciliano com Ganache de Chocolate Meio Amargo — foto 2" loading="lazy">
       </div>
       <div class="placeholder-content"><span class="placeholder-mark">01</span><span>Insira as fotos reais<br>desta torta</span></div>
     </div>
@@ -81,7 +87,7 @@
       <p class="product-category">CHOCOLATE &amp; CÍTRICOS</p>
       <h3>Torta de Limão Siciliano com Ganache de Chocolate Meio Amargo</h3>
       <p class="product-description">Base de biscoito, ganache de chocolate meio amargo e mousse de limão siciliano, finalizada com chantilly. O contraste entre a intensidade do chocolate e o frescor cítrico do limão dá personalidade a cada fatia.</p>
-      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 95,00</strong></div>
+      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 110,00</strong></div>
       <div class="product-actions">
         <button type="button" class="text-link order-product" data-product="Torta de Limão Siciliano com Ganache de Chocolate Meio Amargo">Encomendar esta torta <span aria-hidden="true">↗</span></button>
         <button type="button" class="text-link share-link">Compartilhar</button>
@@ -90,10 +96,10 @@
   </article>
 
   <article id="torta-limao-mirtilo" data-category="torta" class="product-card product-card-reverse">
-    <div class="product-photo photo-placeholder">
+    <div class="product-photo">
       <div class="product-gallery">
-        <img src="img/torta-limao-mirtilo.jpg" alt="Torta de limão siciliano com ganache de mirtilo — foto 1" loading="lazy">
-        <img src="img/torta-limao-mirtilo-2.jpg" alt="Torta de limão siciliano com ganache de mirtilo — foto 2" loading="lazy">
+        <img src="img/torta-limao-mirtilo.png" alt="Torta de Limão Siciliano com Ganache de Mirtilo — foto 1" loading="lazy">
+        <img src="img/torta-limao-mirtilo-2.jpg" alt="Torta de Limão Siciliano com Ganache de Mirtilo — foto 2" loading="lazy">
       </div>
       <div class="placeholder-content"><span class="placeholder-mark">02</span><span>Insira as fotos reais<br>desta torta</span></div>
     </div>
@@ -101,7 +107,7 @@
       <p class="product-category">MIRTILO &amp; CÍTRICOS</p>
       <h3>Torta de Limão Siciliano com Ganache de Mirtilo</h3>
       <p class="product-description">Base de biscoito, ganache de mirtilo e mousse de limão siciliano, finalizada com chantilly, mirtilos frescos e rodelas de limão. Uma combinação delicada de notas frutadas e frescor cítrico.</p>
-      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 135,00</strong></div>
+      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 150,00</strong></div>
       <div class="product-actions">
         <button type="button" class="text-link order-product" data-product="Torta de Limão Siciliano com Ganache de Mirtilo">Encomendar esta torta <span aria-hidden="true">↗</span></button>
         <button type="button" class="text-link share-link">Compartilhar</button>
@@ -110,7 +116,7 @@
   </article>
 
   <article id="torta-chocolate-frutas-vermelhas" data-category="torta" class="product-card">
-    <div class="product-photo photo-placeholder">
+    <div class="product-photo">
       <div class="product-gallery">
         <img src="img/Torta_Chocolate_Frutas_Vermelhas.jpeg" alt="Torta de Chocolate com Frutas Vermelhas — foto 1" loading="lazy">
         <img src="img/Torta_Chocolate_Frutas_Vermelhas-2.jpeg" alt="Torta de Chocolate com Frutas Vermelhas — foto 2" loading="lazy">
@@ -121,7 +127,7 @@
       <p class="product-category">CHOCOLATE &amp; FRUTAS VERMELHAS</p>
       <h3>Torta de Chocolate com Frutas Vermelhas</h3>
       <p class="product-description">Base de biscoito, camadas de geleia de frutas vermelhas e ganache de chocolate meio amargo, finalizada com geleia e frutas vermelhas frescas.</p>
-      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 155,00</strong></div>
+      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 180,00</strong></div>
       <div class="product-actions">
         <button type="button" class="text-link order-product" data-product="Torta de Chocolate com Frutas Vermelhas">Encomendar esta torta <span aria-hidden="true">↗</span></button>
         <button type="button" class="text-link share-link">Compartilhar</button>
@@ -130,7 +136,7 @@
   </article>
 
   <article id="torta-maracuja" data-category="torta" class="product-card product-card-reverse">
-    <div class="product-photo photo-placeholder">
+    <div class="product-photo">
       <div class="product-gallery">
         <img src="img/Torta_maracuja.jpeg" alt="Torta de Maracujá — foto 1" loading="lazy">
         <img src="img/Torta_maracuja-2.jpeg" alt="Torta de Maracujá — foto 2" loading="lazy">
@@ -140,8 +146,8 @@
     <div class="product-info">
       <p class="product-category">MARACUJÁ &amp; CHOCOLATE</p>
       <h3>Torta de Maracujá</h3>
-      <p class="product-description">Base de biscoito, ganache de chocolate meio amargo, mousse de maracujá, finalizado com geleia de maracujá e ganache de chocolate meio amargo.</p>
-      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 110,00</strong></div>
+      <p class="product-description">Base de biscoito, ganache de chocolate meio amargo, mousse de maracujá, finalizada com geleia de maracujá e ganache de chocolate meio amargo.</p>
+      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 115,00</strong></div>
       <div class="product-actions">
         <button type="button" class="text-link order-product" data-product="Torta de Maracujá">Encomendar esta torta <span aria-hidden="true">↗</span></button>
         <button type="button" class="text-link share-link">Compartilhar</button>
@@ -150,10 +156,10 @@
   </article>
 
   <article id="cheesecake-mirtilo" data-category="cheesecake" class="product-card">
-    <div class="product-photo photo-placeholder">
+    <div class="product-photo">
       <div class="product-gallery">
-        <img src="img/cheesecake-mirtilo.jpg" alt="Cheesecake de mirtilo — foto 1" loading="lazy">
-        <img src="img/cheesecake-mirtilo-2.jpg" alt="Cheesecake de mirtilo — foto 2" loading="lazy">
+        <img src="img/cheesecake-mirtilo.jpeg" alt="Cheesecake de Mirtilo — foto 1" loading="lazy">
+        <img src="img/cheesecake-mirtilo-2.jpeg" alt="Cheesecake de Mirtilo — foto 2" loading="lazy">
       </div>
       <div class="placeholder-content"><span class="placeholder-mark">05</span><span>Insira as fotos reais<br>desta torta</span></div>
     </div>
@@ -161,7 +167,7 @@
       <p class="product-category">CHEESECAKE &amp; MIRTILO</p>
       <h3>Cheesecake de Mirtilo</h3>
       <p class="product-description">Base de biscoito, creme de cream cheese com baunilha, finalizada com geleia de mirtilo e mirtilos frescos. Cremosa, com um delicado toque frutado.</p>
-      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 130,00</strong></div>
+      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 115,00</strong></div>
       <div class="product-actions">
         <button type="button" class="text-link order-product" data-product="Cheesecake de Mirtilo">Encomendar este cheesecake <span aria-hidden="true">↗</span></button>
         <button type="button" class="text-link share-link">Compartilhar</button>
@@ -169,39 +175,19 @@
     </div>
   </article>
 
-  <article id="cheesecake-limao-mirtilo" data-category="cheesecake" class="product-card product-card-reverse">
-    <div class="product-photo photo-placeholder">
+  <article id="cheesecake-flocos-frutas-vermelhas" data-category="cheesecake" class="product-card product-card-reverse">
+    <div class="product-photo">
       <div class="product-gallery">
-        <img src="img/cheesecake_limao_mirtilo.jpg" alt="Cheesecake de Limão Siciliano com Mirtilo — foto 1" loading="lazy">
-        <img src="img/cheesecake_limao_mirtilo-2.jpg" alt="Cheesecake de Limão Siciliano com Mirtilo — foto 2" loading="lazy">
+        <img src="img/cheesecake-flocos-frutas-vermelhas.jpeg" alt="Cheesecake de Flocos com Geleia de Frutas Vermelhas — foto 1" loading="lazy">
+        <img src="img/cheesecake-flocos-frutas-vermelhas-2.jpeg" alt="Cheesecake de Flocos com Geleia de Frutas Vermelhas — foto 2" loading="lazy">
       </div>
       <div class="placeholder-content"><span class="placeholder-mark">06</span><span>Insira as fotos reais<br>desta torta</span></div>
-    </div>
-    <div class="product-info">
-      <p class="product-category">MIRTILO &amp; CÍTRICOS</p>
-      <h3>Cheesecake de Limão Siciliano com Mirtilo</h3>
-      <p class="product-description">Base de biscoito, creme de cream cheese com toque de baunilha e limão siciliano, camadas de geleia de mirtilo, finalizada com creme de limão siciliano, merengue e mirtilos frescos.</p>
-      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 130,00</strong></div>
-      <div class="product-actions">
-        <button type="button" class="text-link order-product" data-product="Cheesecake de Limão Siciliano com Mirtilo">Encomendar este cheesecake <span aria-hidden="true">↗</span></button>
-        <button type="button" class="text-link share-link">Compartilhar</button>
-      </div>
-    </div>
-  </article>
-
-  <article id="cheesecake-flocos-frutas-vermelhas" data-category="cheesecake" class="product-card">
-    <div class="product-photo photo-placeholder">
-      <div class="product-gallery">
-        <img src="img/cheesecake-flocos-frutas-vermelhas.jpeg" alt="Cheesecake de flocos com geleia de frutas vermelhas — foto 1" loading="lazy">
-        <img src="img/cheesecake-flocos-frutas-vermelhas-2.jpeg" alt="Cheesecake de flocos com geleia de frutas vermelhas — foto 2" loading="lazy">
-      </div>
-      <div class="placeholder-content"><span class="placeholder-mark">07</span><span>Insira as fotos reais<br>desta torta</span></div>
     </div>
     <div class="product-info">
       <p class="product-category">CHOCOLATE &amp; FRUTAS VERMELHAS</p>
       <h3>Cheesecake de Flocos com Geleia de Frutas Vermelhas</h3>
       <p class="product-description">Base de biscoito, creme de cream cheese com baunilha e pedaços de chocolate meio amargo, coberto com geleia de frutas vermelhas e frutas frescas. Uma combinação cremosa, com notas de chocolate e toque frutado.</p>
-      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 130,00</strong></div>
+      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 150,00</strong></div>
       <div class="product-actions">
         <button type="button" class="text-link order-product" data-product="Cheesecake de Flocos com Geleia de Frutas Vermelhas">Encomendar este cheesecake <span aria-hidden="true">↗</span></button>
         <button type="button" class="text-link share-link">Compartilhar</button>
@@ -209,19 +195,19 @@
     </div>
   </article>
 
-  <article id="dacquoise-frutas-vermelhas" data-category="dacquoise" class="product-card product-card-reverse">
-    <div class="product-photo photo-placeholder">
+  <article id="dacquoise-frutas-vermelhas" data-category="dacquoise" class="product-card">
+    <div class="product-photo">
       <div class="product-gallery">
         <img src="img/dacquoise_frutas_vermelhas.jpeg" alt="Dacquoise de Frutas Vermelhas — foto 1" loading="lazy">
         <img src="img/dacquoise_frutas_vermelhas-2.jpeg" alt="Dacquoise de Frutas Vermelhas — foto 2" loading="lazy">
       </div>
-      <div class="placeholder-content"><span class="placeholder-mark">08</span><span>Insira as fotos reais<br>desta torta</span></div>
+      <div class="placeholder-content"><span class="placeholder-mark">07</span><span>Insira as fotos reais<br>desta torta</span></div>
     </div>
     <div class="product-info">
       <p class="product-category">AMÊNDOAS &amp; FRUTAS VERMELHAS</p>
       <h3>Dacquoise de Frutas Vermelhas</h3>
       <p class="product-description">Massa a base de claras em neve e farinha de amêndoas, chantilly artesanal, finalizada com geleia de frutas vermelhas e frutas vermelhas frescas.</p>
-      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 200,00</strong></div>
+      <div class="product-meta"><span>Rendimento: 8–10 fatias</span><strong>R$ 160,00</strong></div>
       <div class="product-actions">
         <button type="button" class="text-link order-product" data-product="Dacquoise de Frutas Vermelhas">Encomendar esta dacquoise <span aria-hidden="true">↗</span></button>
         <button type="button" class="text-link share-link">Compartilhar</button>
@@ -229,11 +215,9 @@
     </div>
   </article>
 
-</section>
+    </section>
 
-
-
-
+    <!-- ===== ENCOMENDAS ===== -->
     <section class="order-section" id="encomendas">
       <div class="order-inner">
         <p class="eyebrow">COMO ENCOMENDAR</p>
@@ -249,6 +233,7 @@
       <div class="order-decoration" aria-hidden="true"><img src="img/logo-rc-claro.png" alt="" onerror="this.remove()"></div>
     </section>
 
+    <!-- ===== CONTATO ===== -->
     <section class="contact section-wrap" id="contato">
       <p class="eyebrow">VAMOS CONVERSAR?</p>
       <h2>Qual vai ser a sua<br><em>doce escolha?</em></h2>
@@ -260,6 +245,7 @@
     </section>
   </main>
 
+  <!-- ===== RODAPÉ ===== -->
   <footer class="site-footer">
     <a class="footer-brand" href="#inicio">Rafaela Colussi</a>
     <span>Tortas artesanais · Marau, RS</span>
